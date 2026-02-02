@@ -3,13 +3,16 @@
 __pycache__/
 *.pyc
 
-# OS
-.DS_Store
-Thumbs.db
-
 # VS Code
 .vscode/
 
-# Outputs
+# OS files
+.DS_Store
+Thumbs.db
+
+# Optional outputs
 encrypted_outputs/
 decrypted_outputs/
+
+# Node (if ever added)
+node_modules/
