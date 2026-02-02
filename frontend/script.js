@@ -1,8 +1,7 @@
-// ✅ API BASE (auto switches local vs deployed)
 const API_BASE =
   window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
     ? "http://127.0.0.1:5000"
-    : "https://YOUR_RENDER_BACKEND_URL"; // <-- replace after backend deploy
+    : "https://graph-based-image-encryption.onrender.com";
 
 // ---------------- TABS ----------------
 const encryptTab = document.getElementById("encryptTab");
@@ -130,7 +129,6 @@ encryptBtn.addEventListener("click", async () => {
     return;
   }
 
-  // reset UI
   document.getElementById("encProgress").style.width = "0%";
   encLoader.classList.remove("hidden");
   encBtnText.textContent = "Encrypting...";
@@ -154,7 +152,6 @@ encryptBtn.addEventListener("click", async () => {
     formData.append("image", file);
     formData.append("password", pass);
 
-    // ✅ IMPORTANT FIX: use API_BASE
     const res = await fetch(`${API_BASE}/encrypt`, {
       method: "POST",
       body: formData
@@ -190,14 +187,13 @@ encryptBtn.addEventListener("click", async () => {
   } catch (err) {
     clearInterval(timer);
     document.getElementById("encProgress").style.width = "0%";
-    encMsg.textContent = "Backend not reachable. Run backend: python app.py";
+    encMsg.textContent = "Backend not reachable. Please try again later.";
   } finally {
     encLoader.classList.add("hidden");
     encBtnText.textContent = "Encrypt";
   }
 });
 
-// Encrypt downloads
 downloadEncBtn.addEventListener("click", () => {
   if (!window._encryptedImageUrl) return;
   const a = document.createElement("a");
@@ -262,7 +258,6 @@ decryptBtn.addEventListener("click", async () => {
     formData.append("key", key);
     formData.append("password", pass);
 
-    // ✅ IMPORTANT FIX: use API_BASE
     const res = await fetch(`${API_BASE}/decrypt`, {
       method: "POST",
       body: formData
@@ -293,14 +288,13 @@ decryptBtn.addEventListener("click", async () => {
   } catch (err) {
     clearInterval(timer);
     document.getElementById("decProgress").style.width = "0%";
-    decMsg.textContent = "Backend not reachable. Run backend: python app.py";
+    decMsg.textContent = "Backend not reachable. Please try again later.";
   } finally {
     decLoader.classList.add("hidden");
     decBtnText.textContent = "Decrypt";
   }
 });
 
-// Decrypt download
 downloadDecBtn.addEventListener("click", () => {
   if (!window._decryptedImageUrl) return;
   const a = document.createElement("a");
