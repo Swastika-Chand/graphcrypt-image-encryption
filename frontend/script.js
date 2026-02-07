@@ -13,7 +13,6 @@ encryptTab.addEventListener("click", () => {
   encryptSection.classList.remove("hidden");
   decryptSection.classList.add("hidden");
 });
-
 decryptTab.addEventListener("click", () => {
   decryptTab.classList.add("active");
   encryptTab.classList.remove("active");
