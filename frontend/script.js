@@ -1,9 +1,6 @@
-const API_BASE =
-  window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
-    ? "http://127.0.0.1:5000"
-    : "https://graph-based-image-encryption.onrender.com";
+const API_BASE = "http://127.0.0.1:5000";
 
-// ---------------- TABS ----------------
+// TABS 
 const encryptTab = document.getElementById("encryptTab");
 const decryptTab = document.getElementById("decryptTab");
 
@@ -24,7 +21,7 @@ decryptTab.addEventListener("click", () => {
   encryptSection.classList.add("hidden");
 });
 
-// ---------------- HELPERS ----------------
+// HELPERS 
 function showPreview(inputEl, imgEl, emptyEl) {
   const file = inputEl.files[0];
   if (!file) return;
@@ -58,7 +55,7 @@ function startProgress(progressId) {
   return timer;
 }
 
-// ---------------- CUSTOM FILE BUTTONS ----------------
+// CUSTOM FILE BUTTONS 
 const encImage = document.getElementById("encImage");
 const encPickBtn = document.getElementById("encPickBtn");
 const encFileName = document.getElementById("encFileName");
@@ -86,7 +83,7 @@ decKey.addEventListener("change", () => {
   decKeyName.textContent = decKey.files[0] ? decKey.files[0].name : "No file chosen";
 });
 
-// ---------------- PREVIEWS ----------------
+//PREVIEWS 
 const encPreview = document.getElementById("encPreview");
 const encPreviewEmpty = document.getElementById("encPreviewEmpty");
 
@@ -101,7 +98,7 @@ decImage.addEventListener("change", () => {
   showPreview(decImage, decPreview, decPreviewEmpty);
 });
 
-// ---------------- ENCRYPT API ----------------
+// ENCRYPT API 
 const encryptBtn = document.getElementById("encryptBtn");
 const encMsg = document.getElementById("encMsg");
 const encLoader = document.getElementById("encLoader");
@@ -209,7 +206,7 @@ downloadKeyBtn.addEventListener("click", () => {
   downloadTextFile("key.json", JSON.stringify(window._keyJsonData, null, 2));
 });
 
-// ---------------- DECRYPT API ----------------
+//DECRYPT API 
 const decryptBtn = document.getElementById("decryptBtn");
 const decMsg = document.getElementById("decMsg");
 const decLoader = document.getElementById("decLoader");
